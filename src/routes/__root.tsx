@@ -113,7 +113,11 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+      <Navbar />
+      <main className="min-h-screen pt-20">
+        <Outlet />
+      </main>
+      <Footer />
     </QueryClientProvider>
   );
 }
