@@ -51,9 +51,9 @@ export function BinaryRain() {
 
     const particles: P[] = [];
     const layerConfig = [
-      { count: 0.00006, sizeMin: 10, sizeMax: 13, alpha: 0.18, blur: 1.4, speed: 6 },   // back
-      { count: 0.00004, sizeMin: 13, sizeMax: 16, alpha: 0.28, blur: 0.6, speed: 10 },  // mid
-      { count: 0.00002, sizeMin: 15, sizeMax: 19, alpha: 0.42, blur: 0,   speed: 14 },  // front
+      { count: 0.00006, sizeMin: 10, sizeMax: 13, alpha: isDark ? 0.18 : 0.32, blur: 1.4, speed: 6 },   // back
+      { count: 0.00004, sizeMin: 13, sizeMax: 16, alpha: isDark ? 0.28 : 0.45, blur: 0.6, speed: 10 },  // mid
+      { count: 0.00002, sizeMin: 15, sizeMax: 19, alpha: isDark ? 0.42 : 0.6,  blur: 0,   speed: 14 },  // front
     ] as const;
 
     const rand = (a: number, b: number) => a + Math.random() * (b - a);
