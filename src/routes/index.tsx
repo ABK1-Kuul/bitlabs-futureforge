@@ -29,7 +29,7 @@ function Home() {
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 grid-bg opacity-60" />
         <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
-        <Particles count={30} />
+        <Particles count={14} />
 
         <div className="relative z-10 mx-auto max-w-6xl px-4 text-center">
           <motion.div
@@ -45,9 +45,9 @@ function Home() {
           <BinaryMorph />
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 3.8, duration: 0.8 }}
+            transition={{ delay: 0.5, duration: 0.6 }}
             className="mt-12 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto"
           >
             Engineering the future through intelligent technology. We design, build,
@@ -55,21 +55,21 @@ function Home() {
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 4.2, duration: 0.8 }}
+            transition={{ delay: 0.75, duration: 0.6 }}
             className="mt-10 flex flex-col sm:flex-row gap-4 justify-center"
           >
             <Link
               to="/products"
-              className="group inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-gradient-primary text-primary-foreground font-medium animate-pulse-glow"
+              className="group inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-gradient-primary text-primary-foreground font-medium animate-pulse-glow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               Explore Products
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
             <Link
               to="/contact"
-              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl glass font-medium hover:border-primary/50 transition-all"
+              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl glass font-medium hover:border-primary/50 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               Contact Us
             </Link>

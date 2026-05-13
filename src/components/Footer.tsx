@@ -19,14 +19,21 @@ export function Footer() {
               AI systems, and enterprise platforms built for tomorrow.
             </p>
             <div className="mt-6 flex gap-3">
-              {[Github, Twitter, Linkedin, Mail].map((Icon, i) => (
+              {[
+                { Icon: Github, label: "GitHub", href: "https://github.com" },
+                { Icon: Twitter, label: "Twitter", href: "https://twitter.com" },
+                { Icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com" },
+                { Icon: Mail, label: "Email", href: "mailto:hello@bitlabs.tech" },
+              ].map(({ Icon, label, href }) => (
                 <a
-                  key={i}
-                  href="#"
-                  className="h-9 w-9 rounded-lg glass flex items-center justify-center hover:text-primary hover:border-primary/40 transition-all"
-                  aria-label="social"
+                  key={label}
+                  href={href}
+                  target={href.startsWith("http") ? "_blank" : undefined}
+                  rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  className="h-9 w-9 rounded-lg glass flex items-center justify-center hover:text-primary hover:border-primary/40 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  aria-label={`BitLabs on ${label}`}
                 >
-                  <Icon className="h-4 w-4" />
+                  <Icon className="h-4 w-4" aria-hidden />
                 </a>
               ))}
             </div>
