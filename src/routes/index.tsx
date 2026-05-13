@@ -29,7 +29,7 @@ function Home() {
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 grid-bg opacity-60" />
         <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
-        <Particles count={30} />
+        <Particles count={14} />
 
         <div className="relative z-10 mx-auto max-w-6xl px-4 text-center">
           <motion.div
