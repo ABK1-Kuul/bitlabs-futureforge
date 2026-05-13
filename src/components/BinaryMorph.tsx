@@ -17,7 +17,7 @@ export function BinaryMorph() {
   const [phase, setPhase] = useState<0 | 1 | 2 | 3>(0);
 
   useEffect(() => {
-    const t1 = setTimeout(() => setPhase(1), 1400);
+    const t1 = setTimeout(() => setPhase(1), 700);
     return () => clearTimeout(t1);
   }, []);
 
@@ -29,9 +29,9 @@ export function BinaryMorph() {
       setRevealed(i);
       if (i >= BRAND.length) {
         clearInterval(id);
-        setTimeout(() => setPhase(2), 500);
+        setTimeout(() => setPhase(2), 220);
       }
-    }, 280);
+    }, 140);
     return () => clearInterval(id);
   }, [phase]);
 
@@ -45,7 +45,7 @@ export function BinaryMorph() {
         clearInterval(id);
         setPhase(3);
       }
-    }, 95);
+    }, 55);
     return () => clearInterval(id);
   }, [phase]);
 
