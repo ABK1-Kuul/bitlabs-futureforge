@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Github, Twitter, Linkedin, Mail } from "lucide-react";
+import { Logo } from "./Logo";
 
 export function Footer() {
   return (
@@ -8,10 +9,8 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
           <div className="col-span-2">
-            <Link to="/" className="flex items-center gap-2">
-              <div className="h-9 w-9 rounded-lg bg-gradient-primary flex items-center justify-center font-mono font-bold text-primary-foreground">
-                B
-              </div>
+            <Link to="/" aria-label="BitLabs Technology — home" className="group flex items-center gap-3">
+              <Logo height={32} className="transition-[filter] duration-500 ease-out group-hover:brightness-110" />
               <span className="font-display font-semibold text-lg">BitLabs Technology</span>
             </Link>
             <p className="mt-4 text-sm text-muted-foreground max-w-md">

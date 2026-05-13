@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 import { ReduceEffectsToggle } from "./ReduceEffectsToggle";
+import { Logo } from "./Logo";
 
 const links = [
   { to: "/", label: "Home" },
@@ -61,15 +62,14 @@ export function Navbar() {
         >
           <Link
             to="/"
-            className="flex items-center gap-2 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-lg"
+            aria-label="BitLabs Technology — home"
+            className="group flex items-center gap-3 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
-            <div className="relative">
-              <div className="h-8 w-8 rounded-lg bg-gradient-primary glow flex items-center justify-center font-mono text-sm font-bold text-primary-foreground">
-                B
-              </div>
-              <div className="absolute inset-0 rounded-lg bg-gradient-primary blur-md opacity-50 group-hover:opacity-80 transition-opacity" />
-            </div>
-            <span className="font-display font-semibold tracking-tight text-lg">
+            <Logo
+              height={28}
+              className="transition-[filter,transform] duration-500 ease-out group-hover:brightness-110 group-hover:[filter:drop-shadow(0_0_8px_color-mix(in_oklab,var(--primary)_40%,transparent))]"
+            />
+            <span className="font-display font-semibold tracking-tight text-lg leading-none">
               BitLabs<span className="text-muted-foreground font-normal"> Technology</span>
             </span>
           </Link>
