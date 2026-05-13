@@ -13,15 +13,19 @@ import { useTheme } from "./ThemeProvider";
  */
 export function BinaryRain() {
   const ref = useRef<HTMLCanvasElement>(null);
-  const { theme } = useTheme();
+  const { theme, reduceEffects, prefersReducedMotion } = useTheme();
+  const disabled = reduceEffects || prefersReducedMotion;
 
   useEffect(() => {
+    if (disabled) return;
     const canvas = ref.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d", { alpha: true });
     if (!ctx) return;
 
     const isDark = theme === "dark";
+    const isMobile = window.innerWidth < 768;
+    const densityScale = isMobile ? 0.45 : 1;
     const colorRgb =
       getComputedStyle(document.documentElement)
         .getPropertyValue("--rain-color")
@@ -85,7 +89,7 @@ export function BinaryRain() {
       particles.length = 0;
       const area = width * height;
       for (let l = 0 as 0 | 1 | 2; l <= 2; l = (l + 1) as 0 | 1 | 2) {
-        const n = Math.max(6, Math.floor(area * layerConfig[l].count));
+        const n = Math.max(4, Math.floor(area * layerConfig[l].count * densityScale));
         for (let i = 0; i < n; i++) particles.push(spawn(l));
       }
     };
@@ -215,7 +219,9 @@ export function BinaryRain() {
       window.removeEventListener("pointerdown", onDown);
       document.removeEventListener("visibilitychange", onVis);
     };
-  }, [theme]);
+  }, [theme, disabled]);
+
+  if (disabled) return null;
 
   return (
     <canvas
