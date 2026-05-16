@@ -1,6 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles, Zap, Shield, Cpu, Cloud, Code2 } from "lucide-react";
+import {
+  ArrowRight, Sparkles, Zap, Shield, Cpu, Cloud, Code2,
+  Layers, Heart, Rocket, Handshake, Compass, Brain, GraduationCap,
+  Workflow, LineChart, ShieldCheck,
+} from "lucide-react";
 import { BinaryMorph } from "@/components/BinaryMorph";
 import { Particles } from "@/components/Particles";
 import { products } from "@/data/products";
@@ -8,25 +12,54 @@ import { products } from "@/data/products";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "BitLabs Technology — Engineering the Future" },
-      { name: "description", content: "Custom software, AI, and enterprise platforms engineered for tomorrow." },
+      { title: "BitLabs Technology — Building Intelligent Digital Ecosystems" },
+      { name: "description", content: "BitLabs Technology PLC engineers enterprise systems, educational technology, cybersecurity platforms, and digital transformation solutions for organizations across Africa and beyond." },
     ],
   }),
   component: Home,
 });
 
-const features = [
-  { icon: Cpu, title: "AI & Intelligence", desc: "Production-grade AI systems wired into your workflows." },
-  { icon: Code2, title: "Custom Software", desc: "Bespoke platforms engineered for scale and precision." },
-  { icon: Cloud, title: "Cloud Native", desc: "Resilient infrastructure that grows with your ambition." },
-  { icon: Shield, title: "Secure by Design", desc: "Compliance, governance, and zero-trust baked in." },
+const capabilities = [
+  { icon: Cpu, title: "Enterprise Systems", desc: "Scalable, secure platforms engineered for long-term operational impact." },
+  { icon: GraduationCap, title: "Educational Technology", desc: "Learning ecosystems that expand access and improve outcomes." },
+  { icon: Shield, title: "Cybersecurity", desc: "Awareness and protection programs that strengthen digital resilience." },
+  { icon: Cloud, title: "Digital Transformation", desc: "Cloud-native architectures that modernize how organizations operate." },
+];
+
+const whyChoose = [
+  { icon: Compass, title: "Deep Industry Understanding", desc: "We design for the real operational realities of the sectors we serve." },
+  { icon: Layers, title: "Full-Cycle Development Capability", desc: "From discovery and architecture to deployment and continuous evolution." },
+  { icon: Rocket, title: "Enterprise-Grade Scalability", desc: "Systems engineered to grow with your organization, not against it." },
+  { icon: Heart, title: "Human-Centered Design", desc: "Interfaces and workflows that empower users rather than overwhelm them." },
+  { icon: Brain, title: "Innovation-Driven Engineering", desc: "Modern stacks, intelligent automation, and forward-looking architecture." },
+  { icon: Handshake, title: "Long-Term Partnership Approach", desc: "We invest in client success well beyond initial delivery." },
+];
+
+const transformationPillars = [
+  "Simplifying complexity",
+  "Improving accessibility",
+  "Automating repetitive processes",
+  "Strengthening collaboration",
+  "Enabling scalable growth",
+  "Empowering users through intuitive systems",
+];
+
+const futureFocus = [
+  { icon: Brain, title: "AI-Powered Enterprise Systems" },
+  { icon: Workflow, title: "Intelligent Automation" },
+  { icon: Cloud, title: "Cloud-Native Infrastructure" },
+  { icon: GraduationCap, title: "Adaptive Learning Systems" },
+  { icon: LineChart, title: "Predictive Analytics" },
+  { icon: ShieldCheck, title: "Cybersecurity Resilience" },
+  { icon: Layers, title: "Scalable Digital Ecosystems" },
+  { icon: Code2, title: "Future-Ready Engineering" },
 ];
 
 function Home() {
   return (
     <div>
       {/* HERO */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[92vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 grid-bg opacity-60" />
         <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
         <Particles count={14} />
@@ -39,19 +72,29 @@ function Home() {
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-xs font-mono text-muted-foreground mb-10"
           >
             <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
-            INTELLIGENT SYSTEMS · v2026.1
+            BITLABS TECHNOLOGY PLC · INTELLIGENT SYSTEMS
           </motion.div>
 
           <BinaryMorph />
 
+          <motion.h1
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+            className="mt-12 font-display text-3xl md:text-5xl lg:text-6xl font-semibold tracking-tight max-w-4xl mx-auto"
+          >
+            Building <span className="text-gradient">Intelligent Digital Ecosystems</span> for the Future
+          </motion.h1>
+
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.6 }}
-            className="mt-12 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto"
+            transition={{ delay: 0.55, duration: 0.6 }}
+            className="mt-6 text-base md:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed"
           >
-            Engineering the future through intelligent technology. We design, build,
-            and scale software that defines what comes next.
+            BitLabs Technology PLC develops scalable enterprise systems, educational technologies,
+            cybersecurity platforms, and digital transformation solutions designed to help
+            organizations operate smarter, grow faster, and innovate confidently.
           </motion.p>
 
           <motion.div
@@ -61,31 +104,40 @@ function Home() {
             className="mt-10 flex flex-col sm:flex-row gap-4 justify-center"
           >
             <Link
-              to="/products"
+              to="/services"
               className="group inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-gradient-primary text-primary-foreground font-medium animate-pulse-glow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
-              Explore Products
+              Explore Solutions
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
             <Link
-              to="/contact"
+              to="/products"
               className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl glass font-medium hover:border-primary/50 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
-              Contact Us
+              View Products
             </Link>
           </motion.div>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1, duration: 0.6 }}
+            className="mt-10 text-xs font-mono tracking-widest uppercase text-muted-foreground/80"
+          >
+            Enterprise Systems · EdTech · Cybersecurity · Digital Transformation
+          </motion.p>
         </div>
       </section>
 
-      {/* FEATURES */}
+      {/* CAPABILITIES */}
       <Section>
         <SectionHeader
           eyebrow="What we do"
           title={<>A studio for <span className="text-gradient">intelligent software</span></>}
-          desc="From AI infrastructure to enterprise platforms — we build technology that compounds."
+          desc="From enterprise platforms to learning ecosystems — we engineer technology that compounds."
         />
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-16">
-          {features.map((f, i) => (
+          {capabilities.map((f, i) => (
             <motion.div
               key={f.title}
               initial={{ opacity: 0, y: 30 }}
@@ -98,7 +150,7 @@ function Home() {
                 <f.icon className="h-5 w-5 text-primary-foreground" />
               </div>
               <h3 className="font-medium mb-2">{f.title}</h3>
-              <p className="text-sm text-muted-foreground">{f.desc}</p>
+              <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -108,11 +160,11 @@ function Home() {
       <Section>
         <SectionHeader
           eyebrow="Products"
-          title={<>Built for <span className="text-gradient">enterprises</span> that move fast</>}
-          desc="A growing suite of platforms engineered by BitLabs."
+          title={<>Built for <span className="text-gradient">organizations</span> that move forward</>}
+          desc="A focused product suite engineered by BitLabs Technology."
         />
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-16">
-          {products.slice(0, 3).map((p, i) => (
+        <div className="grid md:grid-cols-2 gap-5 mt-16">
+          {products.map((p, i) => (
             <motion.div
               key={p.slug}
               initial={{ opacity: 0, y: 30 }}
@@ -132,9 +184,9 @@ function Home() {
                   <ArrowRight className="h-4 w-4 text-muted-foreground transition-all group-hover:text-primary group-hover:translate-x-1" />
                 </div>
                 <h3 className="font-display text-xl font-semibold mb-2">{p.name}</h3>
-                <p className="text-sm text-muted-foreground mb-4">{p.tagline}</p>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-4">{p.tagline}</p>
                 <div className="flex flex-wrap gap-1.5">
-                  {p.tags.slice(0, 3).map((t) => (
+                  {p.tags.slice(0, 4).map((t) => (
                     <span key={t} className="text-xs font-mono px-2 py-0.5 rounded-md bg-white/5 text-muted-foreground">
                       {t}
                     </span>
@@ -151,6 +203,93 @@ function Home() {
         </div>
       </Section>
 
+      {/* WHY CHOOSE */}
+      <Section>
+        <SectionHeader
+          eyebrow="Why BitLabs"
+          title={<>Why organizations <span className="text-gradient">choose BitLabs Technology</span></>}
+          desc="We combine strategic innovation, technical capability, and scalable engineering to help organizations modernize operations and prepare confidently for the future."
+        />
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-16">
+          {whyChoose.map((w, i) => (
+            <motion.div
+              key={w.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: (i % 3) * 0.08 }}
+              className="group p-7 rounded-2xl glass hover:border-primary/40 hover:-translate-y-1 transition-all"
+            >
+              <div className="h-11 w-11 rounded-xl bg-gradient-primary flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <w.icon className="h-5 w-5 text-primary-foreground" />
+              </div>
+              <h3 className="font-display text-lg font-semibold mb-2">{w.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{w.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </Section>
+
+      {/* DIGITAL TRANSFORMATION PHILOSOPHY */}
+      <Section>
+        <div className="relative rounded-3xl glass overflow-hidden p-10 md:p-16">
+          <div className="absolute inset-0 grid-bg opacity-30" />
+          <div
+            className="absolute inset-0 opacity-70"
+            style={{ background: "radial-gradient(ellipse at top right, oklch(0.4 0.2 260 / 0.35), transparent 60%)" }}
+          />
+          <div className="relative max-w-4xl">
+            <div className="inline-block text-xs font-mono uppercase tracking-widest text-primary mb-4">Philosophy</div>
+            <h2 className="font-display text-3xl md:text-5xl font-semibold tracking-tight mb-6">
+              Digital Transformation, <span className="text-gradient">redefined</span>.
+            </h2>
+            <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl">
+              True digital transformation occurs when technology fundamentally improves how
+              organizations operate, communicate, and scale.
+            </p>
+            <div className="grid sm:grid-cols-2 gap-3 mt-10">
+              {transformationPillars.map((p, i) => (
+                <motion.div
+                  key={p}
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.05 }}
+                  className="flex items-center gap-3 p-4 rounded-xl bg-white/5 border border-white/5"
+                >
+                  <span className="h-1.5 w-1.5 rounded-full bg-primary glow" />
+                  <span className="text-sm">{p}</span>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* FUTURE VISION */}
+      <Section>
+        <SectionHeader
+          eyebrow="Future vision"
+          title={<>Building the future of <span className="text-gradient">intelligent organizations</span></>}
+          desc="We invest in the architectures, systems, and ideas that will define the next decade of enterprise technology."
+        />
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-16">
+          {futureFocus.map((f, i) => (
+            <motion.div
+              key={f.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: (i % 4) * 0.06 }}
+              className="group p-5 rounded-2xl glass hover:border-primary/40 transition-all"
+            >
+              <f.icon className="h-5 w-5 text-primary mb-3 group-hover:scale-110 transition-transform" />
+              <h3 className="text-sm font-medium leading-snug">{f.title}</h3>
+            </motion.div>
+          ))}
+        </div>
+      </Section>
+
       {/* CTA */}
       <Section>
         <div className="relative rounded-3xl glass p-10 md:p-16 text-center overflow-hidden">
@@ -160,7 +299,7 @@ function Home() {
             Ready to build what's next?
           </h2>
           <p className="relative text-muted-foreground max-w-xl mx-auto mb-8">
-            Let's design, prototype, and ship the system your business needs.
+            Let's design, engineer, and deploy the systems your organization needs to move forward.
           </p>
           <Link
             to="/contact"
@@ -199,7 +338,7 @@ export function SectionHeader({
         </div>
       )}
       <h2 className="font-display text-3xl md:text-5xl font-semibold tracking-tight">{title}</h2>
-      {desc && <p className="mt-4 text-muted-foreground text-lg">{desc}</p>}
+      {desc && <p className="mt-4 text-muted-foreground text-lg leading-relaxed">{desc}</p>}
     </div>
   );
 }
