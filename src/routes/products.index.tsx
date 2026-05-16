@@ -7,9 +7,9 @@ export const Route = createFileRoute("/products/")({
   head: () => ({
     meta: [
       { title: "Products — BitLabs Technology" },
-      { name: "description", content: "A suite of intelligent platforms across AI, ERP, security, DevOps, analytics, and fintech." },
+      { name: "description", content: "Enterprise-grade platforms across educational technology and cybersecurity awareness." },
       { property: "og:title", content: "Products — BitLabs Technology" },
-      { property: "og:description", content: "Enterprise products engineered by BitLabs." },
+      { property: "og:description", content: "Intelligent products engineered by BitLabs Technology PLC." },
     ],
   }),
   component: Products,
@@ -21,30 +21,29 @@ function Products() {
       <section className="text-center max-w-3xl mx-auto mb-20">
         <div className="inline-block text-xs font-mono uppercase tracking-widest text-primary mb-4">Products</div>
         <h1 className="font-display text-4xl md:text-6xl font-semibold tracking-tight">
-          Platforms engineered for <span className="text-gradient">scale</span>.
+          Platforms engineered for <span className="text-gradient">organizational impact</span>.
         </h1>
         <p className="mt-6 text-lg text-muted-foreground">
-          Each product is the distilled output of years of engineering across
-          AI, infrastructure, and enterprise systems.
+          Purpose-built products that solve real operational challenges in learning,
+          security, and enterprise enablement.
         </p>
       </section>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid md:grid-cols-2 gap-6">
         {products.map((p, i) => (
           <motion.div
             key={p.slug}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
-            transition={{ delay: (i % 3) * 0.08 }}
+            transition={{ delay: i * 0.08 }}
           >
             <Link
               to="/products/$slug"
               params={{ slug: p.slug }}
               className="group block h-full p-7 rounded-2xl glass hover:border-primary/40 hover:-translate-y-1 transition-all"
             >
-              {/* Visual header */}
-              <div className="relative h-40 rounded-xl mb-6 overflow-hidden grid-bg">
+              <div className="relative h-44 rounded-xl mb-6 overflow-hidden grid-bg">
                 <div
                   className="absolute inset-0 opacity-80"
                   style={{
@@ -64,7 +63,7 @@ function Products() {
               </div>
 
               <h3 className="font-display text-2xl font-semibold mb-2">{p.name}</h3>
-              <p className="text-sm text-muted-foreground mb-5">{p.tagline}</p>
+              <p className="text-sm text-muted-foreground mb-5 leading-relaxed">{p.tagline}</p>
 
               <div className="flex flex-wrap gap-1.5 mb-5">
                 {p.tags.map((t) => (
@@ -75,7 +74,7 @@ function Products() {
               </div>
 
               <div className="inline-flex items-center gap-2 text-sm text-primary group-hover:gap-3 transition-all">
-                Learn more <ArrowRight className="h-4 w-4" />
+                View Product <ArrowRight className="h-4 w-4" />
               </div>
             </Link>
           </motion.div>

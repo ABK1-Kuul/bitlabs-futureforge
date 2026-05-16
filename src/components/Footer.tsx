@@ -13,9 +13,11 @@ export function Footer() {
               <Logo height={32} className="transition-[filter] duration-500 ease-out group-hover:brightness-110" />
               <span className="font-display font-semibold text-lg">BitLabs Technology</span>
             </Link>
-            <p className="mt-4 text-sm text-muted-foreground max-w-md">
-              Engineering the future through intelligent technology. Custom software,
-              AI systems, and enterprise platforms built for tomorrow.
+            <p className="mt-4 text-sm text-muted-foreground max-w-md leading-relaxed">
+              Building Technology That Moves Organizations Forward.
+            </p>
+            <p className="mt-3 text-xs font-mono uppercase tracking-widest text-muted-foreground/70">
+              Addis Ababa, Ethiopia
             </p>
             <div className="mt-6 flex gap-3">
               {[
