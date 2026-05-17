@@ -44,6 +44,39 @@ export const products: Product[] = [
     ],
   },
   {
+    slug: "tankua",
+    name: "Tankua",
+    tagline:
+      "Intelligent digital infrastructure for modern service ecosystems.",
+    description:
+      "Tankua is a modern digital platform designed to streamline service accessibility, operational workflows, and intelligent user engagement through scalable technology infrastructure. Built for organizations that need to modernize how services are delivered, accessed, and measured, Tankua unifies operations, customer experience, and analytics into a single intelligent system.",
+    tags: ["Platform", "Operations", "Service Delivery", "Cloud"],
+    accent: "purple",
+    features: [
+      { title: "Intelligent Workflow Management", desc: "Automate complex service workflows with rules, approvals, and event-driven orchestration." },
+      { title: "Real-Time Service Accessibility", desc: "Deliver consistent, low-latency access across web, mobile, and partner channels." },
+      { title: "Scalable Infrastructure", desc: "Elastic architecture that grows from a single team to nationwide service operations." },
+      { title: "Analytics & Insights", desc: "Operational dashboards and behavioral analytics to drive continuous service improvement." },
+      { title: "Modern User Experience", desc: "Clean, accessible interfaces engineered for clarity, speed, and engagement." },
+      { title: "Cloud-Based Architecture", desc: "Cloud-native foundation with high availability, observability, and zero-downtime deploys." },
+      { title: "Enterprise Integration", desc: "Connect seamlessly with ERPs, payment rails, identity providers, and partner APIs." },
+      { title: "Secure Digital Operations", desc: "Defense-in-depth security with role-based access, audit trails, and encryption in transit and at rest." },
+    ],
+    benefits: [
+      "Modernize service delivery end-to-end",
+      "Reduce operational overhead and manual handoffs",
+      "Improve accessibility and customer satisfaction",
+      "Unlock data-driven decisions across the organization",
+    ],
+    technologies: ["TypeScript", "React", "Node.js", "PostgreSQL", "Redis", "Kubernetes"],
+    useCases: [
+      "Tours, travel, and hospitality operations",
+      "Public and private service providers",
+      "Multi-branch service organizations",
+      "Digital transformation programs",
+    ],
+  },
+  {
     slug: "cyber-awareness-platform",
     name: "Cyber Awareness Platform",
     tagline:
