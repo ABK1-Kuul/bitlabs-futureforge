@@ -3,6 +3,15 @@
 # BitLabs FutureForge — cPanel Git deployment (TanStack Start / Node.js SSR)
 # =============================================================================
 #
+# IMPORTANT — DO NOT BUILD ON CPANEL
+# ----------------------------------
+# Shared hosting runs out of memory during `vite build` (WebAssembly / LVE
+# limits). Production bundles are built by GitHub Actions and published to the
+# `cpanel-deploy` branch. Point cPanel Git Version Control at that branch:
+#
+#   Files → Git Version Control → Manage → Branch: cpanel-deploy → Update
+#   Then: Deploy HEAD Commit
+#
 # BEFORE FIRST DEPLOY
 # -------------------
 # 1. Replace REPLACE_WITH_CPANEL_USERNAME with your cPanel username
@@ -15,14 +24,14 @@
 #        • Node.js version  : 20.x or 22.x (LTS recommended)
 #        • Application mode : Production
 #
-# 3. Connect this repository in cPanel:
-#      Files → Git Version Control → clone → Deploy HEAD Commit
+# 3. Push to `main` — GitHub Actions builds and updates `cpanel-deploy`.
 #
-# WHAT THIS DOES
-# --------------
-# On every push / deploy, cPanel runs these tasks via the post-receive hook:
-#   • install dependencies in the git checkout
-#   • build the Nitro node-server production bundle (dist/)
+# 4. In cPanel Git Version Control, clone this repo and set branch to
+#    `cpanel-deploy`, then Deploy HEAD Commit.
+#
+# WHAT THIS DOES (on cpanel-deploy branch only)
+# ---------------------------------------------
+#   • verify pre-built dist/ is present
 #   • copy runtime files to the live app directory
 #   • install production-only node_modules
 #   • signal Passenger to restart the Node.js app
@@ -38,9 +47,8 @@ deployment:
     # ----- prepare live app directory -----
     - /bin/mkdir -p $DEPLOYPATH/tmp
 
-    # ----- install & build inside the git checkout -----
-    - cd $REPOPATH && npm ci --include=dev
-    - cd $REPOPATH && NODE_ENV=production npm run build
+    # ----- require pre-built bundle (built off-server by GitHub Actions) -----
+    - test -d $REPOPATH/dist || (echo "ERROR: dist/ missing. Deploy the cpanel-deploy branch (built by GitHub Actions on push to main), not main." >&2; exit 1)
 
     # ----- sync production runtime to the live app directory -----
     - /bin/cp $REPOPATH/package.json $DEPLOYPATH/package.json
