@@ -12,4 +12,12 @@ export default defineConfig({
   tanstackStart: {
     server: { entry: "server" },
   },
+  nitro: {
+    preset: "node-server",
+    output: {
+      dir: "dist",
+      publicDir: "dist/client",
+      serverDir: "dist/server",
+    },
+  },
 });

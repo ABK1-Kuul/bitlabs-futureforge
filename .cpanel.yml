@@ -1,0 +1,56 @@
+---
+# =============================================================================
+# BitLabs FutureForge — cPanel Git deployment (TanStack Start / Node.js SSR)
+# =============================================================================
+#
+# BEFORE FIRST DEPLOY
+# -------------------
+# 1. Replace REPLACE_WITH_CPANEL_USERNAME with your cPanel username
+#    (shown in the top-right of cPanel, or the name of /home/<user>/).
+#
+# 2. Create the Node.js application in cPanel:
+#      Software → Setup Node.js App → Create Application
+#        • Application root : /home/YOUR_USER/bitlabs-futureforge
+#        • Startup file     : app.js
+#        • Node.js version  : 20.x or 22.x (LTS recommended)
+#        • Application mode : Production
+#
+# 3. Connect this repository in cPanel:
+#      Files → Git Version Control → clone → Deploy HEAD Commit
+#
+# WHAT THIS DOES
+# --------------
+# On every push / deploy, cPanel runs these tasks via the post-receive hook:
+#   • install dependencies in the git checkout
+#   • build the Nitro node-server production bundle (dist/)
+#   • copy runtime files to the live app directory
+#   • install production-only node_modules
+#   • signal Passenger to restart the Node.js app
+# =============================================================================
+deployment:
+  tasks:
+    # ----- configuration (edit CPANEL_USER) -----
+    - export CPANEL_USER=REPLACE_WITH_CPANEL_USERNAME
+    - export APP_NAME=bitlabs-futureforge
+    - export DEPLOYPATH=/home/$CPANEL_USER/$APP_NAME
+    - export REPOPATH=$(pwd)
+
+    # ----- prepare live app directory -----
+    - /bin/mkdir -p $DEPLOYPATH/tmp
+
+    # ----- install & build inside the git checkout -----
+    - cd $REPOPATH && npm ci --include=dev
+    - cd $REPOPATH && NODE_ENV=production npm run build
+
+    # ----- sync production runtime to the live app directory -----
+    - /bin/cp $REPOPATH/package.json $DEPLOYPATH/package.json
+    - /bin/cp $REPOPATH/package-lock.json $DEPLOYPATH/package-lock.json
+    - /bin/cp $REPOPATH/app.js $DEPLOYPATH/app.js
+    - /bin/rm -rf $DEPLOYPATH/dist
+    - /bin/cp -R $REPOPATH/dist $DEPLOYPATH/dist
+
+    # ----- production dependencies only (smaller footprint, faster restarts) -----
+    - cd $DEPLOYPATH && npm ci --omit=dev
+
+    # ----- restart Passenger / Node.js application -----
+    - /bin/touch $DEPLOYPATH/tmp/restart.txt
