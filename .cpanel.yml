@@ -30,7 +30,7 @@
 deployment:
   tasks:
     # ----- configuration (edit CPANEL_USER) -----
-    - export CPANEL_USER=REPLACE_WITH_CPANEL_USERNAME
+    - export CPANEL_USER=bitlabsb
     - export APP_NAME=bitlabs-futureforge
     - export DEPLOYPATH=/home/$CPANEL_USER/$APP_NAME
     - export REPOPATH=$(pwd)
