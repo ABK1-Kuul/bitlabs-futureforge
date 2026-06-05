@@ -13,15 +13,19 @@ import { useTheme } from "./ThemeProvider";
  */
 export function BinaryRain() {
   const ref = useRef<HTMLCanvasElement>(null);
-  const { theme } = useTheme();
+  const { theme, reduceEffects, prefersReducedMotion } = useTheme();
+  const disabled = reduceEffects || prefersReducedMotion;
 
   useEffect(() => {
+    if (disabled) return;
     const canvas = ref.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d", { alpha: true });
     if (!ctx) return;
 
     const isDark = theme === "dark";
+    const isMobile = window.innerWidth < 768;
+    const densityScale = isMobile ? 0.45 : 1;
     const colorRgb =
       getComputedStyle(document.documentElement)
         .getPropertyValue("--rain-color")
@@ -51,9 +55,9 @@ export function BinaryRain() {
 
     const particles: P[] = [];
     const layerConfig = [
-      { count: 0.00006, sizeMin: 10, sizeMax: 13, alpha: isDark ? 0.18 : 0.32, blur: 1.4, speed: 6 },   // back
-      { count: 0.00004, sizeMin: 13, sizeMax: 16, alpha: isDark ? 0.28 : 0.45, blur: 0.6, speed: 10 },  // mid
-      { count: 0.00002, sizeMin: 15, sizeMax: 19, alpha: isDark ? 0.42 : 0.6,  blur: 0,   speed: 14 },  // front
+      { count: 0.00006, sizeMin: 10, sizeMax: 13, alpha: 0.18, blur: 1.4, speed: 6 },   // back
+      { count: 0.00004, sizeMin: 13, sizeMax: 16, alpha: 0.28, blur: 0.6, speed: 10 },  // mid
+      { count: 0.00002, sizeMin: 15, sizeMax: 19, alpha: 0.42, blur: 0,   speed: 14 },  // front
     ] as const;
 
     const rand = (a: number, b: number) => a + Math.random() * (b - a);
@@ -85,7 +89,7 @@ export function BinaryRain() {
       particles.length = 0;
       const area = width * height;
       for (let l = 0 as 0 | 1 | 2; l <= 2; l = (l + 1) as 0 | 1 | 2) {
-        const n = Math.max(6, Math.floor(area * layerConfig[l].count));
+        const n = Math.max(4, Math.floor(area * layerConfig[l].count * densityScale));
         for (let i = 0; i < n; i++) particles.push(spawn(l));
       }
     };
@@ -215,7 +219,9 @@ export function BinaryRain() {
       window.removeEventListener("pointerdown", onDown);
       document.removeEventListener("visibilitychange", onVis);
     };
-  }, [theme]);
+  }, [theme, disabled]);
+
+  if (disabled) return null;
 
   return (
     <canvas

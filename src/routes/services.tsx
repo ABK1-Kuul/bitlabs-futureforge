@@ -1,35 +1,33 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import {
-  Code2, Globe, Smartphone, BrainCircuit, Cloud, Palette,
-  Database, Plug, GitBranch, Headphones, ShieldCheck, Settings,
+  Code2, GraduationCap, BookOpen, ShieldCheck, Cloud, Compass,
+  Workflow, Palette, Plug, LineChart,
 } from "lucide-react";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
       { title: "Services — BitLabs Technology" },
-      { name: "description", content: "Software engineering, AI, cloud, design, and security — all under one roof." },
+      { name: "description", content: "Enterprise software, EdTech, cybersecurity, cloud, and digital transformation services engineered for long-term impact." },
       { property: "og:title", content: "Services — BitLabs Technology" },
-      { property: "og:description", content: "Custom software, AI, mobile, cloud, and more." },
+      { property: "og:description", content: "Full-cycle digital engineering for organizations operating at scale." },
     ],
   }),
   component: Services,
 });
 
 const services = [
-  { icon: Code2, title: "Custom Software Development", desc: "Bespoke platforms engineered from first principles." },
-  { icon: Globe, title: "Web Development", desc: "High-performance web apps with cinematic interfaces." },
-  { icon: Smartphone, title: "Mobile App Development", desc: "Native-feel iOS and Android products people love." },
-  { icon: BrainCircuit, title: "AI Solutions", desc: "LLMs, RAG, agents, and custom models in production." },
-  { icon: Cloud, title: "Cloud Systems", desc: "Multi-cloud architecture, IaC, and edge deployments." },
-  { icon: Palette, title: "UI / UX Design", desc: "Interface design that translates strategy into clarity." },
-  { icon: Database, title: "ERP Systems", desc: "Modern ERPs unifying finance, ops, and inventory." },
-  { icon: Plug, title: "API Integration", desc: "Seamless connectivity across SaaS, payments, and data." },
-  { icon: GitBranch, title: "DevOps", desc: "Pipelines, observability, and platform engineering done right." },
-  { icon: Headphones, title: "IT Consulting", desc: "Strategic technical guidance from senior engineers." },
-  { icon: ShieldCheck, title: "Cybersecurity", desc: "Posture, detection, and zero-trust at scale." },
-  { icon: Settings, title: "Managed Services", desc: "We run, monitor, and improve your platforms 24/7." },
+  { icon: Code2, title: "Enterprise Software Development", desc: "Custom-engineered platforms built for scalability, secure architecture, and long-term operational reliability." },
+  { icon: GraduationCap, title: "Educational Technology Solutions", desc: "Modern EdTech systems that expand access, improve learning outcomes, and modernize institutional workflows." },
+  { icon: BookOpen, title: "Learning Management Systems", desc: "Custom and Moodle-based LMS environments with SCORM compliance, analytics, and mobile-ready delivery." },
+  { icon: ShieldCheck, title: "Cybersecurity Platforms", desc: "Awareness programs, assessments, and protective systems that harden the human and technical layers of defense." },
+  { icon: Cloud, title: "Cloud Infrastructure Services", desc: "Cloud migration, containerization, and resilient deployment architectures engineered for continuity." },
+  { icon: Compass, title: "Digital Transformation Consulting", desc: "Strategic guidance to modernize operations, align technology with business goals, and unlock scalable growth." },
+  { icon: Workflow, title: "Workflow Automation Systems", desc: "Intelligent automation that removes operational friction and frees teams to focus on higher-value work." },
+  { icon: Palette, title: "UI / UX Engineering", desc: "Human-centered interfaces that translate complexity into clarity across every touchpoint." },
+  { icon: Plug, title: "API & Systems Integration", desc: "Reliable, well-documented integrations that connect platforms, data, and external services at scale." },
+  { icon: LineChart, title: "Intelligent Analytics Solutions", desc: "Decision-grade analytics that turn organizational data into measurable operational insight." },
 ];
 
 function Services() {
@@ -41,7 +39,8 @@ function Services() {
           Engineering capabilities, <span className="text-gradient">end to end</span>.
         </h1>
         <p className="mt-6 text-lg text-muted-foreground">
-          A full-stack technology partner for product, infrastructure, and intelligence.
+          A full-cycle technology partner for enterprise systems, educational platforms,
+          cybersecurity, and digital transformation.
         </p>
       </section>
 
@@ -63,7 +62,7 @@ function Services() {
                 <s.icon className="h-5 w-5 text-primary-foreground" />
               </div>
               <h3 className="font-display text-lg font-semibold mb-2">{s.title}</h3>
-              <p className="text-sm text-muted-foreground">{s.desc}</p>
+              <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
             </div>
           </motion.div>
         ))}

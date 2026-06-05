@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Github, Twitter, Linkedin, Mail } from "lucide-react";
+import { Logo } from "./Logo";
 
 export function Footer() {
   return (
@@ -8,25 +9,32 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
           <div className="col-span-2">
-            <Link to="/" className="flex items-center gap-2">
-              <div className="h-9 w-9 rounded-lg bg-gradient-primary flex items-center justify-center font-mono font-bold text-primary-foreground">
-                B
-              </div>
+            <Link to="/" aria-label="BitLabs Technology — home" className="group flex items-center gap-3">
+              <Logo height={32} className="transition-[filter] duration-500 ease-out group-hover:brightness-110" />
               <span className="font-display font-semibold text-lg">BitLabs Technology</span>
             </Link>
-            <p className="mt-4 text-sm text-muted-foreground max-w-md">
-              Engineering the future through intelligent technology. Custom software,
-              AI systems, and enterprise platforms built for tomorrow.
+            <p className="mt-4 text-sm text-muted-foreground max-w-md leading-relaxed">
+              Building Technology That Moves Organizations Forward.
+            </p>
+            <p className="mt-3 text-xs font-mono uppercase tracking-widest text-muted-foreground/70">
+              Addis Ababa, Ethiopia
             </p>
             <div className="mt-6 flex gap-3">
-              {[Github, Twitter, Linkedin, Mail].map((Icon, i) => (
+              {[
+                { Icon: Github, label: "GitHub", href: "https://github.com" },
+                { Icon: Twitter, label: "Twitter", href: "https://twitter.com" },
+                { Icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com" },
+                { Icon: Mail, label: "Email", href: "mailto:hello@bitlabs.tech" },
+              ].map(({ Icon, label, href }) => (
                 <a
-                  key={i}
-                  href="#"
-                  className="h-9 w-9 rounded-lg glass flex items-center justify-center hover:text-primary hover:border-primary/40 transition-all"
-                  aria-label="social"
+                  key={label}
+                  href={href}
+                  target={href.startsWith("http") ? "_blank" : undefined}
+                  rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  className="h-9 w-9 rounded-lg glass flex items-center justify-center hover:text-primary hover:border-primary/40 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  aria-label={`BitLabs on ${label}`}
                 >
-                  <Icon className="h-4 w-4" />
+                  <Icon className="h-4 w-4" aria-hidden />
                 </a>
               ))}
             </div>
