@@ -16,6 +16,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
@@ -26,21 +28,18 @@ jobs:
       - run: NODE_ENV=production npm run build
 
       - name: Publish cpanel-deploy branch
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
 
-          DEPLOY_DIR=$(mktemp -d)
-          cp package.json package-lock.json app.js .cpanel.yml "$DEPLOY_DIR/"
-          cp -R dist "$DEPLOY_DIR/dist"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          cd "$DEPLOY_DIR"
-          git init -q
-          git checkout -q -b cpanel-deploy
-          git add .
-          git -c user.name="github-actions[bot]" \
-              -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
-              commit -m "Deploy build ${GITHUB_SHA::7}"
+          # Branch from main (shared history) so cPanel can switch branches normally.
+          git checkout -B cpanel-deploy
 
-          git push -f "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:cpanel-deploy
+          # Replace the tree with deploy-only files (no vite build needed on server).
+          git rm -rf --quiet --ignore-unmatch .
+          git add -f dist package.json package-lock.json app.js .cpanel.yml
+          git commit -m "Deploy build ${GITHUB_SHA::7}"
+
+          git push -f origin cpanel-deploy
