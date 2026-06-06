@@ -12,12 +12,21 @@ export default defineConfig({
   tanstackStart: {
     server: { entry: "server" },
   },
-  nitro: {
-    preset: "node-server",
-    output: {
-      dir: "dist",
-      publicDir: "dist/client",
-      serverDir: "dist/server",
-    },
-  },
+  nitro: process.env.VERCEL
+    ? {
+        preset: "vercel",
+        output: {
+          dir: ".vercel/output",
+          serverDir: ".vercel/output/functions/index.func",
+          publicDir: ".vercel/output/static",
+        },
+      }
+    : {
+        preset: "node-server",
+        output: {
+          dir: "dist",
+          publicDir: "dist/client",
+          serverDir: "dist/server",
+        },
+      },
 });
