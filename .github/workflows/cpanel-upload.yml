@@ -45,9 +45,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git checkout -B cpanel-upload
           git add -f bitlabs-cpanel.zip
-          git commit -m "cPanel package ${GITHUB_SHA::7}" --allow-empty
-          git push -f origin cpanel-upload
+          git commit -m "cPanel package ${GITHUB_SHA::7}"
+          git push -f "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:cpanel-upload
