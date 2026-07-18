@@ -11,16 +11,23 @@ export const Route = createFileRoute("/products/$slug")({
   },
   head: ({ loaderData }) => {
     const p = loaderData?.product;
-    return {
-      meta: p
-        ? [
+    return p
+      ? {
+          meta: [
             { title: `${p.name} — BitLabs Technology` },
             { name: "description", content: p.tagline },
+            { name: "keywords", content: `${p.name}, ${p.name} features, ${p.name} benefits, ${p.name} technology stack, ${p.name} use cases` },
+            { property: "og:url", content: `https://bitlabsbuild.com/products/${p.slug}` },
             { property: "og:title", content: `${p.name} — BitLabs Technology` },
             { property: "og:description", content: p.tagline },
-          ]
-        : [{ title: "Product not found" }],
-    };
+          ],
+          links: [
+            { rel: "canonical", href: `https://bitlabsbuild.com/products/${p.slug}` },
+          ],
+        }
+      : {
+          meta: [{ title: "Product not found" }],
+        };
   },
   notFoundComponent: () => (
     <div className="mx-auto max-w-3xl px-4 py-32 text-center">

@@ -5,10 +5,15 @@ import { Target, Eye, Heart, Building2, GraduationCap, Workflow, Layers } from "
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About — BitLabs Technology" },
-      { name: "description", content: "BitLabs Technology PLC builds intelligent digital ecosystems for organizations across Africa and beyond." },
-      { property: "og:title", content: "About BitLabs Technology" },
-      { property: "og:description", content: "A next-generation technology company engineering scalable, human-centered digital ecosystems." },
+      { title: "About Us — BitLabs Technology" },
+      { name: "description", content: "Discover BitLabs Technology. Learn about our mission, vision, and core principles for human-centered software engineering and digital transformation." },
+      { name: "keywords", content: "BitLabs team, software engineering mission, digital transformation Africa, human-centered design, software quality standards" },
+      { property: "og:url", content: "https://bitlabsbuild.com/about" },
+      { property: "og:title", content: "About Us — BitLabs Technology" },
+      { property: "og:description", content: "Discover BitLabs Technology. Learn about our mission, vision, and core principles for human-centered software engineering and digital transformation." },
+    ],
+    links: [
+      { rel: "canonical", href: "https://bitlabsbuild.com/about" },
     ],
   }),
   component: About,
@@ -54,7 +59,10 @@ function About() {
       </section>
 
       {/* Narrative */}
-      <section className="max-w-3xl mx-auto mb-32 space-y-6 text-muted-foreground leading-relaxed text-base md:text-lg">
+      <section className="max-w-3xl mx-auto mb-24 space-y-6 text-muted-foreground leading-relaxed text-base md:text-lg">
+        <h2 className="text-center font-display text-2xl md:text-3xl font-semibold text-foreground mb-8">
+          Our Philosophy & Core Expertise
+        </h2>
         <p>
           We specialize in enterprise software development, educational technology, cybersecurity
           systems, cloud infrastructure, workflow automation, and digital transformation solutions
@@ -76,24 +84,32 @@ function About() {
       </section>
 
       {/* Capability pillars */}
-      <section className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-32">
-        {stats.map((s, i) => (
-          <motion.div
-            key={s.label}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.08 }}
-            className="p-6 rounded-2xl glass text-center"
-          >
-            <s.icon className="h-5 w-5 mx-auto mb-3 text-primary" />
-            <div className="text-sm font-medium">{s.label}</div>
-          </motion.div>
-        ))}
+      <section className="mb-24">
+        <h2 className="text-center font-display text-2xl md:text-3xl font-semibold text-foreground mb-8">
+          Core Digital Infrastructure Pillars
+        </h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {stats.map((s, i) => (
+            <motion.div
+              key={s.label}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08 }}
+              className="p-6 rounded-2xl glass text-center"
+            >
+              <s.icon className="h-5 w-5 mx-auto mb-3 text-primary" />
+              <div className="text-sm font-medium">{s.label}</div>
+            </motion.div>
+          ))}
+        </div>
       </section>
 
       {/* Values */}
       <section className="mb-16">
+        <h2 className="text-center font-display text-2xl md:text-3xl font-semibold text-foreground mb-12">
+          Our Foundation & Value System
+        </h2>
         <div className="grid md:grid-cols-3 gap-5">
           {values.map((v, i) => (
             <motion.div

@@ -8,10 +8,15 @@ import {
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "Services — BitLabs Technology" },
-      { name: "description", content: "Enterprise software, EdTech, cybersecurity, cloud, and digital transformation services engineered for long-term impact." },
-      { property: "og:title", content: "Services — BitLabs Technology" },
-      { property: "og:description", content: "Full-cycle digital engineering for organizations operating at scale." },
+      { title: "Our Services — BitLabs Technology" },
+      { name: "description", content: "Explore our end-to-end engineering capabilities, including custom enterprise software, educational technology, cybersecurity platforms, and cloud infrastructure." },
+      { name: "keywords", content: "custom software development, learning management systems, LMS, SCORM, cybersecurity training, cloud migration, workflow automation, UI UX engineering" },
+      { property: "og:url", content: "https://bitlabsbuild.com/services" },
+      { property: "og:title", content: "Our Services — BitLabs Technology" },
+      { property: "og:description", content: "Explore our end-to-end engineering capabilities, including custom enterprise software, educational technology, cybersecurity platforms, and cloud infrastructure." },
+    ],
+    links: [
+      { rel: "canonical", href: "https://bitlabsbuild.com/services" },
     ],
   }),
   component: Services,
@@ -44,29 +49,32 @@ function Services() {
         </p>
       </section>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {services.map((s, i) => (
-          <motion.div
-            key={s.title}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ delay: (i % 6) * 0.06 }}
-            className="group relative p-7 rounded-2xl glass hover:border-primary/40 hover:-translate-y-1 transition-all overflow-hidden"
-          >
-            <div className="absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity"
-              style={{ background: "linear-gradient(135deg, oklch(0.72 0.2 250 / 0.15), transparent 60%)" }}
-            />
-            <div className="relative">
-              <div className="h-12 w-12 rounded-xl bg-gradient-primary flex items-center justify-center mb-5 group-hover:scale-110 group-hover:rotate-3 transition-transform">
-                <s.icon className="h-5 w-5 text-primary-foreground" />
+      <section>
+        <h2 className="sr-only">Our Core Service Capabilities</h2>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {services.map((s, i) => (
+            <motion.div
+              key={s.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: (i % 6) * 0.06 }}
+              className="group relative p-7 rounded-2xl glass hover:border-primary/40 hover:-translate-y-1 transition-all overflow-hidden"
+            >
+              <div className="absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity"
+                style={{ background: "linear-gradient(135deg, oklch(0.72 0.2 250 / 0.15), transparent 60%)" }}
+              />
+              <div className="relative">
+                <div className="h-12 w-12 rounded-xl bg-gradient-primary flex items-center justify-center mb-5 group-hover:scale-110 group-hover:rotate-3 transition-transform">
+                  <s.icon className="h-5 w-5 text-primary-foreground" />
+                </div>
+                <h3 className="font-display text-lg font-semibold mb-2">{s.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
               </div>
-              <h3 className="font-display text-lg font-semibold mb-2">{s.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
-            </div>
-          </motion.div>
-        ))}
-      </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }

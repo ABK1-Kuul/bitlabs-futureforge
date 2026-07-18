@@ -14,6 +14,13 @@ export const Route = createFileRoute("/")({
     meta: [
       { title: "BitLabs Technology — Building Intelligent Digital Ecosystems" },
       { name: "description", content: "BitLabs Technology PLC engineers enterprise systems, educational technology, cybersecurity platforms, and digital transformation solutions for organizations across Africa and beyond." },
+      { name: "keywords", content: "BitLabs, BitLabs Technology, Enterprise Software, EdTech, Cybersecurity, Digital Transformation, Africa Software Engineering, Software Development Addis Ababa" },
+      { property: "og:url", content: "https://bitlabsbuild.com/" },
+      { property: "og:title", content: "BitLabs Technology — Building Intelligent Digital Ecosystems" },
+      { property: "og:description", content: "BitLabs Technology PLC engineers enterprise systems, educational technology, cybersecurity platforms, and digital transformation solutions for organizations across Africa and beyond." },
+    ],
+    links: [
+      { rel: "canonical", href: "https://bitlabsbuild.com/" },
     ],
   }),
   component: Home,

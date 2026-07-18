@@ -24,7 +24,7 @@ export function Footer() {
                 { Icon: Github, label: "GitHub", href: "https://github.com" },
                 { Icon: Twitter, label: "Twitter", href: "https://twitter.com" },
                 { Icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com" },
-                { Icon: Mail, label: "Email", href: "mailto:hello@bitlabs.tech" },
+                { Icon: Mail, label: "Email", href: "mailto:contact@bitlabsbuild.com" },
               ].map(({ Icon, label, href }) => (
                 <a
                   key={label}

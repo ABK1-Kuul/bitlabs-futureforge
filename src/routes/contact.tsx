@@ -6,10 +6,15 @@ import { Mail, Phone, MapPin, Send, Check, Github, Twitter, Linkedin } from "luc
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — BitLabs Technology" },
-      { name: "description", content: "Get in touch with BitLabs Technology. We respond within one business day." },
-      { property: "og:title", content: "Contact — BitLabs Technology" },
-      { property: "og:description", content: "Let's build something together." },
+      { title: "Contact Us — BitLabs Technology" },
+      { name: "description", content: "Get in touch with BitLabs Technology PLC. Request a product demo, consult on digital transformation, or start a new software project with our team." },
+      { name: "keywords", content: "contact BitLabs, request product demo, software consulting, hire developers, office Addis Ababa" },
+      { property: "og:url", content: "https://bitlabsbuild.com/contact" },
+      { property: "og:title", content: "Contact Us — BitLabs Technology" },
+      { property: "og:description", content: "Get in touch with BitLabs Technology PLC. Request a product demo, consult on digital transformation, or start a new software project with our team." },
+    ],
+    links: [
+      { rel: "canonical", href: "https://bitlabsbuild.com/contact" },
     ],
   }),
   component: Contact,
@@ -72,44 +77,48 @@ function Contact() {
 
       <div className="grid lg:grid-cols-5 gap-8">
         {/* Form */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="lg:col-span-3 p-8 md:p-10 rounded-3xl glass relative overflow-hidden"
-        >
-          <form onSubmit={submit} className="space-y-5">
-            <div className="grid sm:grid-cols-2 gap-5">
-              <Field label="Full name" name="name" required value={form.name} onChange={(v) => setForm({ ...form, name: v })} />
-              <Field label="Email" name="email" type="email" required value={form.email} onChange={(v) => setForm({ ...form, email: v })} />
-            </div>
-            <Field label="Company" name="company" value={form.company} onChange={(v) => setForm({ ...form, company: v })} />
-            <Field label="How can we help?" name="message" textarea required value={form.message} onChange={(v) => setForm({ ...form, message: v })} />
+        <section className="lg:col-span-3">
+          <h2 className="sr-only">Contact Form</h2>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="p-8 md:p-10 rounded-3xl glass relative overflow-hidden"
+          >
+            <form onSubmit={submit} className="space-y-5">
+              <div className="grid sm:grid-cols-2 gap-5">
+                <Field label="Full name" name="name" required value={form.name} onChange={(v) => setForm({ ...form, name: v })} />
+                <Field label="Email" name="email" type="email" required value={form.email} onChange={(v) => setForm({ ...form, email: v })} />
+              </div>
+              <Field label="Company" name="company" value={form.company} onChange={(v) => setForm({ ...form, company: v })} />
+              <Field label="How can we help?" name="message" textarea required value={form.message} onChange={(v) => setForm({ ...form, message: v })} />
 
-            <button
-              type="submit"
-              disabled={sent}
-              className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-gradient-primary text-primary-foreground font-medium animate-pulse-glow disabled:opacity-70"
-            >
-              {sent ? <><Check className="h-4 w-4" /> Sent — we'll be in touch</> : <>Send message <Send className="h-4 w-4" /></>}
-            </button>
-          </form>
+              <button
+                type="submit"
+                disabled={sent}
+                className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-gradient-primary text-primary-foreground font-medium animate-pulse-glow disabled:opacity-70"
+              >
+                {sent ? <><Check className="h-4 w-4" /> Sent — we'll be in touch</> : <>Send message <Send className="h-4 w-4" /></>}
+              </button>
+            </form>
 
-          <AnimatePresence>
-            {sent && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0 }}
-                className="absolute inset-x-0 bottom-0 h-1 bg-gradient-primary"
-              />
-            )}
-          </AnimatePresence>
-        </motion.div>
+            <AnimatePresence>
+              {sent && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="absolute inset-x-0 bottom-0 h-1 bg-gradient-primary"
+                />
+              )}
+            </AnimatePresence>
+          </motion.div>
+        </section>
 
         {/* Info */}
-        <div className="lg:col-span-2 space-y-4">
+        <section className="lg:col-span-2 space-y-4">
+          <h2 className="sr-only">Contact Information & Links</h2>
           {[
-            { icon: Mail, label: "Email", value: "hello@bitlabs.tech" },
+            { icon: Mail, label: "Email", value: "contact@bitlabsbuild.com" },
             { icon: Phone, label: "Phone", value: "+251 (0) 911 000 000" },
             { icon: MapPin, label: "Office", value: "Bole Road, Addis Ababa" },
           ].map((item, i) => (
@@ -142,13 +151,24 @@ function Contact() {
           </div>
 
           <div className="flex gap-3">
-            {[Github, Twitter, Linkedin].map((Icon, i) => (
-              <a key={i} href="#" className="flex-1 h-12 rounded-xl glass flex items-center justify-center hover:border-primary/40 hover:text-primary transition-all">
-                <Icon className="h-4 w-4" />
+            {[
+              { Icon: Github, label: "GitHub", href: "https://github.com" },
+              { Icon: Twitter, label: "Twitter", href: "https://twitter.com" },
+              { Icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com" },
+            ].map(({ Icon, label, href }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Visit BitLabs on ${label}`}
+                className="flex-1 h-12 rounded-xl glass flex items-center justify-center hover:border-primary/40 hover:text-primary transition-all"
+              >
+                <Icon className="h-4 w-4" aria-hidden />
               </a>
             ))}
           </div>
-        </div>
+        </section>
       </div>
     </div>
   );

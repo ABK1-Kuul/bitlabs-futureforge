@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { useMemo, useState } from "react";
 import { Search, ArrowRight } from "lucide-react";
@@ -6,10 +6,15 @@ import { Search, ArrowRight } from "lucide-react";
 export const Route = createFileRoute("/resources")({
   head: () => ({
     meta: [
-      { title: "Resources — BitLabs Technology" },
-      { name: "description", content: "Articles, case studies, research, and documentation from the BitLabs team." },
-      { property: "og:title", content: "Resources — BitLabs Technology" },
-      { property: "og:description", content: "Insights, research and case studies." },
+      { title: "Resources & Insights — BitLabs Technology" },
+      { name: "description", content: "Read the latest engineering articles, case studies, AI research, and tutorials from the software development team at BitLabs Technology." },
+      { name: "keywords", content: "AI research, platform engineering, event sourcing, Postgres scaling, model gateway, RAG search, fintech design" },
+      { property: "og:url", content: "https://bitlabsbuild.com/resources" },
+      { property: "og:title", content: "Resources & Insights — BitLabs Technology" },
+      { property: "og:description", content: "Read the latest engineering articles, case studies, AI research, and tutorials from the software development team at BitLabs Technology." },
+    ],
+    links: [
+      { rel: "canonical", href: "https://bitlabsbuild.com/resources" },
     ],
   }),
   component: Resources,
@@ -80,9 +85,14 @@ function Resources() {
             <span className="text-xs font-mono text-primary mb-3">{featured.category} · {featured.readTime}</span>
             <h2 className="font-display text-2xl md:text-3xl font-semibold mb-3">{featured.title}</h2>
             <p className="text-muted-foreground mb-6">{featured.excerpt}</p>
-            <a href="#" className="inline-flex items-center gap-2 text-primary hover:gap-3 transition-all">
+            <Link
+              to="/resources"
+              hash="featured"
+              className="inline-flex items-center gap-2 text-primary hover:gap-3 transition-all"
+              aria-label={`Read featured article: ${featured.title}`}
+            >
               Read article <ArrowRight className="h-4 w-4" />
-            </a>
+            </Link>
           </div>
         </motion.div>
       )}
@@ -114,31 +124,39 @@ function Resources() {
       </div>
 
       {/* Grid */}
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-        {filtered.map((a, i) => (
-          <motion.a
-            key={a.title}
-            href="#"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.04 }}
-            className="group p-6 rounded-2xl glass hover:border-primary/40 hover:-translate-y-1 transition-all"
-          >
-            <div className="flex items-center justify-between text-xs font-mono text-muted-foreground mb-3">
-              <span className="text-primary">{a.category}</span>
-              <span>{a.readTime}</span>
+      <section>
+        <h2 className="sr-only">Articles & Insights Grid</h2>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {filtered.map((a, i) => (
+            <motion.div
+              key={a.title}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.04 }}
+            >
+              <Link
+                to="/resources"
+                hash={a.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}
+                className="group block h-full p-6 rounded-2xl glass hover:border-primary/40 hover:-translate-y-1 transition-all"
+                aria-label={`Read article: ${a.title}`}
+              >
+                <div className="flex items-center justify-between text-xs font-mono text-muted-foreground mb-3">
+                  <span className="text-primary">{a.category}</span>
+                  <span>{a.readTime}</span>
+                </div>
+                <h3 className="font-display text-lg font-semibold mb-2 group-hover:text-primary transition-colors">{a.title}</h3>
+                <p className="text-sm text-muted-foreground mb-4">{a.excerpt}</p>
+                <div className="text-xs text-muted-foreground">{a.date}</div>
+              </Link>
+            </motion.div>
+          ))}
+          {filtered.length === 0 && (
+            <div className="col-span-full text-center py-16 text-muted-foreground">
+              No articles match your search.
             </div>
-            <h3 className="font-display text-lg font-semibold mb-2 group-hover:text-primary transition-colors">{a.title}</h3>
-            <p className="text-sm text-muted-foreground mb-4">{a.excerpt}</p>
-            <div className="text-xs text-muted-foreground">{a.date}</div>
-          </motion.a>
-        ))}
-        {filtered.length === 0 && (
-          <div className="col-span-full text-center py-16 text-muted-foreground">
-            No articles match your search.
-          </div>
-        )}
-      </div>
+          )}
+        </div>
+      </section>
     </div>
   );
 }
