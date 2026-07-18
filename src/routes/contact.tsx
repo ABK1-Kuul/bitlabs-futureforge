@@ -120,7 +120,7 @@ function Contact() {
           {[
             { icon: Mail, label: "Email", value: "contact@bitlabsbuild.com" },
             { icon: Phone, label: "Phone", value: "+251 (0) 911 000 000" },
-            { icon: MapPin, label: "Office", value: "Bole Road, Addis Ababa" },
+            { icon: MapPin, label: "Office", value: "Siraj Bldg, Girar, Addis Ababa" },
           ].map((item, i) => (
             <motion.div
               key={item.label}
@@ -139,15 +139,18 @@ function Contact() {
             </motion.div>
           ))}
 
-          {/* Map placeholder */}
-          <div className="rounded-2xl glass overflow-hidden">
-            <div className="aspect-[4/3] grid-bg relative flex items-center justify-center">
-              <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at center, oklch(0.3 0.18 260 / 0.4), transparent 70%)" }} />
-              <div className="relative text-center">
-                <MapPin className="h-8 w-8 mx-auto text-primary mb-2" />
-                <p className="font-mono text-sm text-muted-foreground">9.0054° N, 38.7636° E</p>
-              </div>
-            </div>
+          {/* Google Map */}
+          <div className="rounded-2xl glass overflow-hidden aspect-[4/3] border border-border/50">
+            <iframe
+              title="BitLabs Location Map"
+              src={`https://maps.google.com/maps?q=${encodeURIComponent(
+                "XMMM+275, Unnamed Road, Addis Ababa (Siraj Bldg | Girar | ሲራጅ ህንፃ | ሲራጅ ህንጻ | ግራር)"
+              )}&t=&z=16&ie=UTF8&iwloc=&output=embed`}
+              className="w-full h-full border-0 dark:invert-[90%] dark:hue-rotate-180 dark:brightness-[85%] dark:contrast-[90%]"
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
           </div>
 
           <div className="flex gap-3">
