@@ -65,6 +65,46 @@ const futureFocus = [
 function Home() {
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "BitLabs Technology PLC",
+            "alternateName": "BitLabs",
+            "url": "https://bitlabsbuild.com",
+            "logo": "https://bitlabsbuild.com/favicon.svg",
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+251-911-000000",
+              "contactType": "customer service",
+              "email": "contact@bitlabsbuild.com",
+              "areaServed": "Global",
+              "availableLanguage": ["English", "Amharic"]
+            },
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Bole Road, Girar",
+              "addressLocality": "Addis Ababa",
+              "addressCountry": "ET"
+            },
+            "sameAs": [
+              "https://github.com",
+              "https://twitter.com",
+              "https://linkedin.com"
+            ],
+            "description": "BitLabs Technology PLC engineers enterprise systems, educational technology, cybersecurity platforms, and digital transformation solutions.",
+            "knowsAbout": [
+              "Software Engineering",
+              "Educational Technology",
+              "Cybersecurity Awareness",
+              "Cloud Architecture",
+              "Workflow Automation"
+            ]
+          })
+        }}
+      />
       {/* HERO */}
       <section className="relative min-h-[92vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 grid-bg opacity-60" />
