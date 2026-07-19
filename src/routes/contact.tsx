@@ -30,9 +30,8 @@ function Field({
   const Comp: any = textarea ? "textarea" : "input";
   return (
     <div className="relative">
-      <label className={`absolute left-4 transition-all pointer-events-none font-mono text-xs ${
-        focused || value ? "-top-2 px-1 bg-background text-primary" : "top-3.5 text-muted-foreground"
-      }`}>
+      <label className={`absolute left-4 transition-all pointer-events-none font-mono text-xs ${focused || value ? "-top-2 px-1 bg-background text-primary" : "top-3.5 text-muted-foreground"
+        }`}>
         {label}{required && " *"}
       </label>
       <Comp
@@ -119,7 +118,7 @@ function Contact() {
           <h2 className="sr-only">Contact Information & Links</h2>
           {[
             { icon: Mail, label: "Email", value: "contact@bitlabsbuild.com" },
-            { icon: Phone, label: "Phone", value: "+251 (0) 911 000 000" },
+            { icon: Phone, label: "Phone", value: "+251 926 306 048\n+251 934 455 338" },
             { icon: MapPin, label: "Office", value: "Siraj Bldg, Girar, Addis Ababa" },
           ].map((item, i) => (
             <motion.div
@@ -134,7 +133,7 @@ function Contact() {
               </div>
               <div>
                 <div className="text-xs font-mono uppercase tracking-wider text-muted-foreground">{item.label}</div>
-                <div className="font-medium">{item.value}</div>
+                <div className="font-medium whitespace-pre-line">{item.value}</div>
               </div>
             </motion.div>
           ))}
